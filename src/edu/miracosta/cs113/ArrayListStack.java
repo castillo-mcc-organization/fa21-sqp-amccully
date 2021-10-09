@@ -18,22 +18,18 @@ public class ArrayListStack<E> implements StackInterface<E> {
 
     @Override
     public E peek() {
-        try {
-            return stackData.get(stackData.size() - 1);
-        }
-        catch(IndexOutOfBoundsException ioobe) {
+        if(empty()) {
             throw new EmptyStackException();
         }
+        return stackData.get(stackData.size() - 1);
     }
 
     @Override
     public E pop() {
-        try {
-            return stackData.remove(stackData.size()-1);
-        }
-        catch(IndexOutOfBoundsException ioobe) {
+        if(empty()) {
             throw new EmptyStackException();
         }
+        return stackData.remove(stackData.size() - 1);
     }
 
     @Override
