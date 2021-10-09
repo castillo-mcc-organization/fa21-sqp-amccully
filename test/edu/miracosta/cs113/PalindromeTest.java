@@ -41,10 +41,32 @@ public class PalindromeTest {
      * @return returns true if a palindrome (ignoring whitespace and case sensitivity), false otherwise
      */
     private boolean isPalindrome(String s) {
-
         // TODO:
-        // Implement this method body using your ArrayListStack. Be mindful of your algorithm!
-        return false;
+        // Implement this method body using your edu.miracosta.cs113.ArrayListStack. Be mindful of your algorithm!
+
+        if(s == null) {
+            throw new IllegalArgumentException();
+        }
+        s = s.replaceAll(" ", "");
+        s = s.toLowerCase();
+
+        ArrayListStack<String> stack1 = new ArrayListStack<String>();
+        ArrayListStack<String> stack2 = new ArrayListStack<String>();
+        for(int i = 0; i < s.length(); i++) {
+            stack1.push(s.substring(i,i+1));
+        }
+        for(int i = 0; i < (s.length() / 2); i++) {
+            stack2.push(stack1.pop());
+        }
+        if((s.length() % 2) != 0) {
+            stack1.pop();
+        }
+        for(int i = 0; i < (s.length() / 2); i++) {
+            if(!stack1.pop().equals(stack2.pop())) {
+                return false;
+            }
+        }
+        return true;
 
     } // End of method isPalindrome
 

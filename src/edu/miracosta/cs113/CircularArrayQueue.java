@@ -18,7 +18,21 @@ public class CircularArrayQueue<E> implements Queue<E>{
         size = 0;
         queueData = (E[]) new Object[capacity];
         front = 0;
-        rear = capacity-1;
+        rear = capacity - 1;
+    }
+
+    private void reallocate() {
+        int newCapacity = capacity * 2;
+        E[] newQueueData = (E[]) new Object[newCapacity];
+        int i = front;
+        for(int j = 0; j < capacity; j++) {
+            newQueueData[j] = queueData[i];
+            i = (i + 1) % capacity;
+        }
+        front = 0;
+        rear = size - 1;
+        capacity = newCapacity;
+        queueData = newQueueData;
     }
 
     @Override
@@ -92,7 +106,7 @@ public class CircularArrayQueue<E> implements Queue<E>{
     @Override
     public boolean offer(E e) {
         if(size == capacity) {
-            return false;
+            reallocate();
         }
         rear = (rear + 1) % capacity;
         queueData[rear] = e;
