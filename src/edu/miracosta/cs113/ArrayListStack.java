@@ -1,13 +1,23 @@
 package edu.miracosta.cs113;
 
-import edu.miracosta.cs113.StackInterface;
 import java.util.ArrayList;
 import java.util.EmptyStackException;
 
+/**
+ * ArrayListStack.java : An implementation of the stack interface (stack structure) using ArrayList methods
+ *
+ * @author      Aaron McCully <amccully2001@gmail.com>
+ * @version     1.0
+ *
+ * @param <E>   generic type of the data stored in a stack
+ */
 public class ArrayListStack<E> implements StackInterface<E> {
 
     private ArrayList<E> stackData;
 
+    /**
+     * Default constructor which creates a stack instance using ArrayList of generic type E
+     */
     public ArrayListStack() {
         stackData = new ArrayList<E>();
     }

@@ -5,7 +5,16 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.Queue;
 
-public class CircularArrayQueue<E> implements Queue<E>{
+/**
+ * CircularArrayQueue.java : An implementation of circular array queue using methods from Java's Queue interface
+ *
+ * @author      Aaron McCully <amccully2001@gmail.com>
+ * @version     1.0
+ *
+ * @param <E>   generic type of the data stored in a queue
+ */
+public class CircularArrayQueue<E> implements Queue<E> {
+
     // data fields
     int size;
     int capacity;
@@ -13,6 +22,12 @@ public class CircularArrayQueue<E> implements Queue<E>{
     int rear;
     E[] queueData;
 
+    /**
+     * A constructor which creates a circular array queue instance with a set capacity
+     * Size is set to 0, queue starts as empty
+     *
+     * @param _capacity an integer that tells us maximum capacity of the queue
+     */
     public CircularArrayQueue(int _capacity) {
         capacity = _capacity;
         size = 0;
@@ -21,6 +36,9 @@ public class CircularArrayQueue<E> implements Queue<E>{
         rear = capacity - 1;
     }
 
+    /**
+     * Will double the maximum capacity of the circular array queue instance
+     */
     private void reallocate() {
         int newCapacity = capacity * 2;
         E[] newQueueData = (E[]) new Object[newCapacity];
